@@ -1,0 +1,123 @@
+import json
+
+
+# carregar dados
+
+try:
+    with open("lancamentos.json", "r") as f:
+        lancamentos = json.load(f)
+except FileNotFoundError:
+    lancamentos = []
+
+
+receitas = 0
+despesas = 0
+saldo = 0
+
+
+while True:
+
+    print("\nMENU")
+    print("1 - Adicionar")
+    print("2 - Listar")
+    print("3 - Relatório")
+    print("4 - TXT")
+    print("5 - Sair")
+
+
+    opcao = input("Escolha: ").strip()
+
+
+    # OPÇÃO 1
+    if opcao == "1":
+
+        tipo = input("Tipo (receita/despesa): ").strip()
+
+
+        if tipo not in ["receita", "despesa"]:
+            print("Tipo inválido")
+            continue
+
+
+        try:
+            valor = float(input("Valor: "))
+        except ValueError:
+            print("Valor inválido")
+            continue
+
+
+        categoria = input("Categoria: ")
+        descricao = input("Descrição: ")
+
+
+        lancamento = {
+            "tipo": tipo,
+            "valor": valor,
+            "categoria": categoria,
+            "descricao": descricao
+        }
+
+
+        lancamentos.append(lancamento)
+
+
+        with open("lancamentos.json", "w") as f:
+            json.dump(lancamentos, f, indent=4)
+
+
+        print("Salvo com sucesso!")
+
+
+    # OPÇÃO 2
+    elif opcao == "2":
+
+        if len(lancamentos) == 0:
+            print("Nenhum lançamento cadastrado.")
+        else:
+            for item in lancamentos:
+                print(item)
+
+
+    # OPÇÃO 3
+    elif opcao == "3":
+
+        receitas = sum(i["valor"] for i in lancamentos if i["tipo"] == "receita")
+        despesas = sum(i["valor"] for i in lancamentos if i["tipo"] == "despesa")
+
+        saldo = receitas - despesas
+
+
+        print("Receitas:", receitas)
+        print("Despesas:", despesas)
+        print("Saldo:", saldo)
+
+
+    # OPÇÃO 4
+    elif opcao == "4":
+
+        receitas = sum(i["valor"] for i in lancamentos if i["tipo"] == "receita")
+        despesas = sum(i["valor"] for i in lancamentos if i["tipo"] == "despesa")
+
+        saldo = receitas - despesas
+
+        with open("relatorio.txt", "w") as f:
+
+            f.write("RELATÓRIO FINANCEIRO\n")
+            f.write(f"Receitas: {receitas}\n")
+            f.write(f"Despesas: {despesas}\n")
+            f.write(f"Saldo: {saldo}\n")
+
+
+        print("Relatório criado!")
+
+
+    # OPÇÃO 5
+    elif opcao == "5":
+
+        print("Saindo...")
+        break
+
+
+    else:
+
+        print("Opção inválida")
