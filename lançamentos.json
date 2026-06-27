@@ -1,0 +1,8 @@
+[
+    {
+        "tipo": "despesa",
+        "valor": 7000.0,
+        "categoria": "teste",
+        "descricao": "teste"
+    }
+]
