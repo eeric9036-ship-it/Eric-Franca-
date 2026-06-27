@@ -1,1 +1,39 @@
 # Eric-Franca-
+
+ App de Finanças Pessoais
+
+ser  
+## Como rodar
+
+Para executar o programa, basta abrir o terminal na pasta do projeto e rodar:
+
+```bash
+python financas.py
+```
+
+## Funcionalidades
+
+* **Adicionar lançamento:** permite cadastrar uma nova entrada ou saída de dinheiro, informando o tipo (receita ou despesa), valor, categoria e descrição.
+* **Listar lançamentos:** mostra todos os registros financeiros já cadastrados.
+* **Gerar relatório:** calcula o total de receitas, despesas e apresenta o saldo final disponível.
+* **Exportar relatório em TXT:** cria um arquivo chamado `relatorio.txt` com o resumo das informações financeiras.
+* **Sair do programa:** encerra a execução do aplicativo.
+
+## Arquivos utilizados
+
+* `lancamentos.json` - arquivo responsável por guardar os dados dos lançamentos cadastrados.
+* `relatorio.txt` - arquivo criado pelo programa contendo o relatório financeiro.
+
+## Funções implementadas
+
+| Função               | Responsabilidade                                                                         |
+| -------------------- | ---------------------------------------------------------------------------------------- |
+| Carregar dados       | Realiza a leitura do arquivo `lancamentos.json` para recuperar os lançamentos já salvos. |
+| Adicionar lançamento | Cadastra uma nova receita ou despesa e salva as informações no sistema.                  |
+| Listar lançamentos   | Exibe todos os registros cadastrados pelo usuário.                                       |
+| Calcular saldo       | Faz a soma das receitas e despesas para descobrir o saldo atual.                         |
+| Gerar relatório      | Organiza as informações financeiras e mostra os valores calculados.                      |
+| Exportar relatório   | Cria o arquivo `relatorio.txt` com os dados do relatório financeiro.                     |
+
+## Tecnologias usadas
+
